@@ -29,7 +29,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "users.db", null, 1)
     }
 
     fun authenticateUser(mobile: String, password: String): Boolean {
-        val cursor: Cursor = sqliteDatabase.query("Users", null, "mobile=? password=?", arrayOf(mobile, password),
+        val cursor: Cursor = sqliteDatabase.query("Users", null, "mobile=? AND password=?", arrayOf(mobile, password),
             null, null, null)
         return cursor.count > 0
     }

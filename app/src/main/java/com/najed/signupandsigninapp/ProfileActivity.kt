@@ -22,7 +22,11 @@ class ProfileActivity : AppCompatActivity() {
             textViews[2].text = "Name: ${intent.getStringExtra("name")}"
         }
         else {
-
+            val mobile = intent.getStringExtra("mobile")
+            val user = mobile?.let { DBHelper(applicationContext).getUser(it) }
+            textViews[0].text = "Welcome ${user?.mobile}"
+            textViews[1].text = "Location: ${user?.location}"
+            textViews[2].text = "Name: ${user?.name}"
         }
 
         val signoutButton = findViewById<Button>(R.id.signout_btn)
